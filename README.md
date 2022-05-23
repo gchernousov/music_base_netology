@@ -89,4 +89,4 @@ CREATE TABLE artist_track(
   
 В итоге схема музыкальной базы выглядит вот так:
 
-![](//https://github.com/gchernousov/music_base_netology/blob/master/music_base_scheme.jpg)
+![](//github.com/gchernousov/music_base_netology/blob/master/music_base_scheme.jpg)
