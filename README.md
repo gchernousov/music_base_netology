@@ -56,7 +56,7 @@ CREATE TABLE compilation_track(
 );
 ~~~
 
-Все запросы в файле *create_md_tables.sql*
+Все запросы находятся в файле *create_md_tables.sql*
   
 ### 2. __INSERT__ запросы на добавление записей.
   
@@ -70,7 +70,7 @@ VALUES ('Korn');
 ~~~
 
 С помощью `SELECT * FROM artists WHERE artist_name = 'Korn';` можем узнать __id__ необходимого исполнителя.
-Но можно сделать другой запрос, чтоб узнать id только что добавленной записи:
+Но можно сделать другой запрос, чтоб узнать __id__ только что добавленной записи:
 
 ~~~
 SELECT * FROM artists
@@ -125,7 +125,7 @@ VALUES ('Trash', 206, 25, 3), ('4 U', 102, 25, 4), ('Beg for Me', 233, 25, 5);
 Чтобы удостовериться, что все данные и связи внесены верно, можно сделать такой __SELECT__ запрос:
 
 ~~~
-SELECT artist_name, YEAR, album_name, track_position, track_name, duration
+SELECT artist_name, year, album_name, track_position, track_name, duration
 FROM tracks t
 JOIN albums r ON t.album_id = r.id
 JOIN artist_album aa ON r.id = aa.album_id 
@@ -183,13 +183,17 @@ WHERE ct.compilation_id = 4;
   
 ### 3. __SELECT__ запросы для выборки данных:
 
+> Название и год выхода альбомов, вышедших в 2018 году:
+
 ~~~
-SELECT album_name, YEAR 
+SELECT album_name, year 
 FROM albums
 WHERE YEAR = 2018;
 ~~~
 
 ![](/pics/select_result_1.jpg)
+
+> Название и продолжительность самого длительного трека:
 
 ~~~
 SELECT track_name, duration
@@ -198,6 +202,8 @@ WHERE duration = (SELECT MAX(duration) FROM tracks);
 ~~~
 
 ![](/pics/select_result_2.jpg)
+
+> Название треков, продолжительность которых не менее 3,5 минуты:
 
 ~~~
 SELECT track_name, duration
@@ -208,6 +214,8 @@ WHERE duration > (3 * 60) + 30;
 ![](/pics/select_result_3.jpg)
 *Результатом было более 200 записей, на скриншоте первые 10.*
 
+> Названия сборников, вышедших в период с 2018 по 2020 год включительно:
+
 ~~~
 SELECT compilation_name, year
 FROM compilations
@@ -216,6 +224,8 @@ WHERE YEAR BETWEEN 2018 AND 2020;
 
 ![](/pics/select_result_4.jpg)
 
+> Исполнители, чье имя состоит из 1 слова:
+
 ~~~
 SELECT artist_name
 FROM artists
@@ -223,6 +233,8 @@ WHERE artist_name NOT LIKE '% %';
 ~~~
 
 ![](/pics/select_result_5.jpg)
+
+> Название треков, которые содержат слово "мой"/"my":
 
 ~~~
 SELECT track_name
