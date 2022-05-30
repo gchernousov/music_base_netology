@@ -188,7 +188,7 @@ WHERE ct.compilation_id = 4;
 ~~~
 SELECT album_name, year 
 FROM albums
-WHERE YEAR = 2018;
+WHERE year = 2018;
 ~~~
 
 ![](/pics/select_result_1.jpg)
@@ -212,6 +212,7 @@ WHERE duration > (3 * 60) + 30;
 ~~~
 
 ![](/pics/select_result_3.jpg)
+
 *Результатом было более 200 записей, на скриншоте первые 10.*
 
 > Названия сборников, вышедших в период с 2018 по 2020 год включительно:
@@ -219,7 +220,7 @@ WHERE duration > (3 * 60) + 30;
 ~~~
 SELECT compilation_name, year
 FROM compilations
-WHERE YEAR BETWEEN 2018 AND 2020;
+WHERE year BETWEEN 2018 AND 2020;
 ~~~
 
 ![](/pics/select_result_4.jpg)
