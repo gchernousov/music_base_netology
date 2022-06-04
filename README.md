@@ -82,11 +82,16 @@ WHERE ar.artist_name = 'Mogwai';
 > Название альбомов, в которых присутствуют исполнители более 1 жанра.
 
 ~~~
-SELECT album_name 
-FROM artist_album aa
-JOIN albums a ON aa.album_id = a.id 
-GROUP BY album_name 
-HAVING COUNT(aa.album_id) > 1;
+SELECT album_name
+FROM (
+	SELECT artist_id, COUNT(artist_id) AS genres
+	FROM artist_genre
+	GROUP BY artist_id) AS t1
+JOIN artists ar ON t1.artist_id = ar.id
+JOIN artist_album aa ON ar.id = aa.artist_id 
+JOIN albums ab ON aa.album_id = ab.id
+WHERE genres > 1
+LIMIT (10);
 ~~~
 
 ![](/pics/select_result_6.jpg)
